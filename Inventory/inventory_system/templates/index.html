@@ -1,0 +1,133 @@
+{%extends 'base.html'%} {%block body%}
+<div class="button-group">
+  <a
+    href="{% url 'display_laptops' %}"
+    class="btn btn-primary btn-md"
+    role="button"
+    >Laptops</a
+  >
+  <a href="{% url 'add_laptop' %}" class="btn btn-success btn-md" role="button"
+    >+</a
+  >
+  <a
+    href="{% url 'display_desktops' %}"
+    class="btn btn-primary btn-md"
+    role="button"
+    >Desktops</a
+  >
+  <a href="{% url 'add_desktop'%}" class="btn btn-success btn-md" role="button"
+    >+</a
+  >
+  <a
+    href="{% url 'display_smartphones' %}"
+    class="btn btn-primary btn-md"
+    role="button"
+    >Smartphones</a
+  >
+  <a
+    href="{% url 'add_smartphones'%}"
+    class="btn btn-success btn-md"
+    role="button"
+    >+</a
+  >
+  <a
+    href="{% url 'display_headphones' %}"
+    class="btn btn-primary btn-md"
+    role="button"
+    >Headphones</a
+  >
+  <a
+    href="{%url 'add_headphones'%}"
+    class="btn btn-success btn-md"
+    role="button"
+    >+</a
+  >
+</div>
+<br />
+<h3>Currently Viewing {{header}}</h3>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>Model</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th>Brand</th>
+      <th>Issues</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for item in items%}
+    <tr>
+      <td>{{item.pk}}</td>
+      <td>{{item.type}}</td>
+      <td>{{item.price}}</td>
+      <td>{{item.status}}</td>
+      <td>{{item.brand}}</td>
+      <td>{{item.issues}}</td>
+      {% if header == 'laptops' %}
+      <td>
+        <a
+          href="{%url 'edit_laptop' item.pk %}"
+          class="btn btn-success btn-sm"
+          role="button"
+          >Edit-Laptop</a
+        >
+        <a
+          href="{%url 'delete_laptop' item.pk %}"
+          class="btn btn-danger btn-sm"
+          role="button"
+          >delete-Laptop</a
+        >
+      </td>
+      {% elif header == 'desktops' %}
+      <td>
+        <a
+          href="{%url 'edit_desktop' item.pk %}"
+          class="btn btn-success btn-sm"
+          role="button"
+          >Edit-Desktop</a
+        >
+        <a
+          href="{%url 'delete_desktop' item.pk %}"
+          class="btn btn-danger btn-sm"
+          role="button"
+          >delete-Desktop</a
+        >
+      </td>
+      {% elif header == 'smartphones' %}
+      <td>
+        <a
+          href="{% url 'edit_smartphones' item.pk %}"
+          class="btn btn-success btn-sm"
+          role="button"
+          >Edit-Smartphones</a
+        >
+        <a
+          href="{% url 'delete_smartphones' item.pk %}"
+          class="btn btn-danger btn-sm"
+          role="button"
+          >delete-Smartphones</a
+        >
+      </td>
+      {% else %}
+      <td>
+        <a
+          href="{% url 'edit_headphones' item.pk %}"
+          class="btn btn-success btn-sm"
+          role="button"
+          >Edit-headphones</a
+        >
+        <a
+          href="{% url 'delete_headphones' item.pk %}"
+          class="btn btn-danger btn-sm"
+          role="button"
+          >delete-headphones</a
+        >
+      </td>
+      {% endif %}
+    </tr>
+    {%endfor%}
+  </tbody>
+</table>
+{%endblock%}
