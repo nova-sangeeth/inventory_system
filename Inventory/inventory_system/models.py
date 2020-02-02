@@ -16,6 +16,13 @@ class Electronics(models.Model):
     )
     status = models.CharField(max_length=100, choices=choices, default='SOLD')
     issues = models.CharField(max_length=100, default='No issues')
+    shipping_choices = (
+        ('SHIPPABLE', 'item can be shipped'),
+        ('NON-SHIPPABLE', 'item cannot be shipped'),
+        ('SPECIAL-SHIPPING', 'item will be shipped later')
+    )
+    shipping = models.CharField(
+        max_length=100, choices=shipping_choices, default='SHIPPABLE')
 
     class Meta:
         abstract = True

@@ -44,50 +44,6 @@ def display_headphones(request):
     return render(request, 'index.html', context)
 
 
-# def add_laptop(request):
-#     if request.method == "POST":
-#         form = laptop_form(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('index')
-#     else:
-#         form = laptop_form()
-#         return render(request, 'add_new.html', {'form': form})
-
-
-# def add_desktop(request):
-#     if request.method == "POST":
-#         form = desktop_form(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('index')
-#     else:
-#         form = desktop_form()
-#         return render(request, 'add_new.html', {'form': form})
-
-
-# def add_smartphones(request):
-#     if request.method == "POST":
-#         form = smartphones_form(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('index')
-#     else:
-#         form = smartphones_form()
-#         return render(request, 'add_new.html', {'form': form})
-
-
-# def add_headphones(request):
-#     if request.method == "POST":
-#         form = headphones_form(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             return redirect('index')
-#     else:
-#         form = headphones_form()
-#         return render(request, 'add_new.html', {'form': form})
-
-# ADDING ITEMS TO THE INVENTORY USING  ADD_FORMS
 def add_device(request, cls):
     if request.method == "POST":
         form = cls(request.POST)
@@ -100,19 +56,19 @@ def add_device(request, cls):
 
 
 def add_laptop(request):
-    return add_device(request, laptop_form)
+    return add_device(request, laptop_form, )
 
 
 def add_desktop(request):
-    return add_device(request, desktop_form)
+    return add_device(request, desktop_form, )
 
 
 def add_smartphones(request):
-    return add_device(request, smartphones_form)
+    return add_device(request, smartphones_form, )
 
 
 def add_headphones(request):
-    return add_device(request, headphones_form)
+    return add_device(request, headphones_form, )
 
 
 def edit_device(request, pk, model, cls):
@@ -143,35 +99,38 @@ def edit_smartphones(request, pk):
 def edit_headphones(request, pk):
     return edit_device(request, pk, headphones, headphones_form)
 
+
 def delete_laptop(request, pk):
     laptops.objects.filter(id=pk).delete()
-    items =laptops.objects.all()
+    items = laptops.objects.all()
     context = {
         'items': items
     }
-    return render(request,'index.html', context)
+    return render(request, 'index.html', context)
+
 
 def delete_desktop(request, pk):
     desktops.objects.filter(id=pk).delete()
-    items =desktops.objects.all()
+    items = desktops.objects.all()
     context = {
         'items': items
     }
-    return render(request,'index.html', context)
+    return render(request, 'index.html', context)
 
 
 def delete_headphones(request, pk):
     headphones.objects.filter(id=pk).delete()
-    items =headphones.objects.all()
+    items = headphones.objects.all()
     context = {
         'items': items
     }
-    return render(request,'index.html', context)
-    
+    return render(request, 'index.html', context)
+
+
 def delete_smartphones(request, pk):
     smartphones.objects.filter(id=pk).delete()
-    items =smartphones.objects.all()
+    items = smartphones.objects.all()
     context = {
         'items': items
     }
-    return render(request,'index.html', context)
+    return render(request, 'index.html', context)
