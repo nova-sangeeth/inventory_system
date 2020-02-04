@@ -1,4 +1,8 @@
 {%extends 'base.html'%} {%block body%}
+<!-- <a href="{% url 'logout_view' %}" class="btn btn-primary btn-md" role="button"
+  >logout_view</a
+> -->
+<br />
 <div class="button-group">
   <a
     href="{% url 'display_laptops' %}"
@@ -132,4 +136,5 @@
     {%endfor%}
   </tbody>
 </table>
+
 {%endblock%}

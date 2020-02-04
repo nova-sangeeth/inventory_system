@@ -1,7 +1,9 @@
 from django.conf.urls import url
+from django.contrib import admin
+from django.contrib.auth import views as auth_views
 from .views import *
 urlpatterns = [
-        url(r'^$', index, name='index'),
+    url(r'^$', index, name='index'),
     url(r'^display_laptops$', display_laptops, name='display_laptops'),
     url(r'^display_desktops$', display_desktops, name='display_desktops'),
     url(r'^display_smartphones$', display_smartphones, name='display_smartphones'),
@@ -20,9 +22,15 @@ urlpatterns = [
         edit_headphones, name='edit_headphones'),
     # DELETE VIEWS URLS
     url(r'^delete_laptop/(?P<pk>\d+)$', delete_laptop, name='delete_laptop'),
-    url(r'^delete_desktop/(?P<pk>\d+)$', delete_desktop, name= 'delete_desktop'),
-    url(r'^delete_smartphones/(?P<pk>\d+)$',delete_smartphones, name = 'delete_smartphones'),
-    url(r'^delete_headphones/(?P<pk>\d+)$', delete_headphones, name= 'delete_headphones'),
+    url(r'^delete_desktop/(?P<pk>\d+)$', delete_desktop, name='delete_desktop'),
+    url(r'^delete_smartphones/(?P<pk>\d+)$',
+        delete_smartphones, name='delete_smartphones'),
+    url(r'^delete_headphones/(?P<pk>\d+)$',
+        delete_headphones, name='delete_headphones'),
+
+    # AUTHENTICATION LINKS---->>
+    url(r'^login_view$', login_view, name='login_view'),
+    url(r'^registeration_view$', registeration_view, name='registeration_view'),
+    url(r'^logout_view$', logout_view, name='logout_view'),
+
 ]
-
-

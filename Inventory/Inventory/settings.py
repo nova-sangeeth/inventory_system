@@ -26,7 +26,7 @@ SECRET_KEY = '1!*570zsft+61&=v*p(1tyh9ct&!8#_s0zbub&xz+$^jj+z$2*'
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+CRIPST_TEMPLATE_PACK = 'bootstrap4'
 
 # Application definition
 
@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'inventory_system',
     'import_export',
+    'crispy_forms',
 
 ]
 

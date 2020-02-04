@@ -1,11 +1,58 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from .models import *
 from .forms import *
-# Create your views here.
+from django.contrib.auth import(
+    authenticate,
+    get_user_model,
+    login,
+    logout
+)
 
 
 def index(request):
     return render(request, 'index.html')
+
+
+def login_view(request):
+    next = request.GET.get('next')
+    form = userlogin_form(request.POST or None)
+    if form.is_valid():
+        username = form.cleaned_data.get('username')
+        password = form.cleaned_data.get('password')
+        user = authenticate(username=username, password=password)
+        login(request, user)
+        if next:
+            return redirect(next)
+        return redirect('/')
+    context = {
+        'form': form,
+    }
+    return render(request, "login.html", context)
+
+
+def registeration_view(request):
+    next = request.GET.get('next')
+    form = userregister_form(request.POST or None)
+    if form.is_valid():
+        user = form.save(commit=False)
+        # save the credentials from the form to the 'user' object.
+        password = form.cleaned_data.get('password')
+        user.set_password(password)
+        user.save()
+        new_user = authenticate(username=user.username, password=password)
+        login(request, new_user)
+        if next:
+            return redirect(next)
+        return redirect('/')
+    context = {
+        'form': form,
+    }
+    return render(request, "registeration.html", context)
+
+
+def logout_view(request):
+    logout(request)
+    return redirect('/')
 
 
 def display_laptops(request):
