@@ -21,7 +21,7 @@ class Electronics(models.Model):
         ('SHIPPABLE', 'item can be shipped'),
         ('NON-SHIPPABLE', 'item cannot be shipped'),
         ('SPECIAL-SHIPPING', 'item will be shipped later')
-        
+
     )
     shipping = models.CharField(
         max_length=100, choices=shipping_choices, default='SHIPPABLE')
@@ -47,4 +47,8 @@ class smartphones(Electronics):
 
 
 class headphones(Electronics):
+    pass
+
+
+class consoles(Electronics):
     pass

@@ -41,7 +41,19 @@
     >Headphones</a
   >
   <a
-    href="{%url 'add_headphones'%}"
+    href="{% url 'add_headphones' %}"
+    class="btn btn-success btn-md"
+    role="button"
+    >+</a
+  >
+  <a
+    href="{% url 'display_consoles' %}"
+    class="btn btn-primary btn-md"
+    role="button"
+    >Consoles</a
+  >
+  <a
+    href="{% url 'add_consoles' %}"
     class="btn btn-success btn-md"
     role="button"
     >+</a
@@ -59,6 +71,7 @@
       <th>Brand</th>
       <th>Shipping</th>
       <th>Issues</th>
+      <!-- <th>Date Launched</th> -->
     </tr>
   </thead>
   <tbody>
@@ -71,6 +84,7 @@
       <td>{{item.brand}}</td>
       <td>{{item.shipping}}</td>
       <td>{{item.issues}}</td>
+      <!-- <td>{{item.date}}</td> -->
       {% if header == 'laptops' %}
       <td>
         <a
@@ -114,6 +128,21 @@
           class="btn btn-danger btn-sm"
           role="button"
           >delete-Smartphones</a
+        >
+      </td>
+      {% elif header == 'consoles' %}
+      <td>
+        <a
+          href="{% url 'edit_consoles' item.pk %}"
+          class="btn btn-success btn-sm"
+          role="button"
+          >Edit-consoles</a
+        >
+        <a
+          href="{% url 'delete_consoles' item.pk %}"
+          class="btn btn-danger btn-sm"
+          role="button"
+          >delete-consoles</a
         >
       </td>
       {% else %}

@@ -15,7 +15,8 @@ class laptop_form(forms.ModelForm):
 
     class Meta:
         model = laptops
-        fields = ('type', 'price', 'brand', 'status', 'issues', 'shipping')
+        fields = ('type', 'price', 'brand', 'status',
+                  'issues', 'shipping')
 
 
 class desktop_form(forms.ModelForm):
@@ -24,7 +25,8 @@ class desktop_form(forms.ModelForm):
 
     class Meta:
         model = desktops
-        fields = ('type', 'price', 'brand', 'status', 'issues', 'shipping')
+        fields = ('type', 'price', 'brand', 'status',
+                  'issues', 'shipping')
 
 
 class smartphones_form(forms.ModelForm):
@@ -33,7 +35,8 @@ class smartphones_form(forms.ModelForm):
 
     class Meta:
         model = smartphones
-        fields = ('type', 'price', 'brand', 'status', 'issues', 'shipping')
+        fields = ('type', 'price', 'brand', 'status',
+                  'issues', 'shipping')
 
 
 class headphones_form(forms.ModelForm):
@@ -42,8 +45,18 @@ class headphones_form(forms.ModelForm):
 
     class Meta:
         model = headphones
-        fields = ('type', 'price', 'brand', 'status', 'issues', 'shipping')
+        fields = ('type', 'price', 'brand', 'status',
+                  'issues', 'shipping')
 
+
+class consoles_form(forms.ModelForm):
+    helper = FormHelper()
+    helper.form_show_labels = True
+
+    class Meta:
+        model = consoles
+        fields = ('type', 'price', 'brand', 'status',
+                  'issues', 'shipping')
 
 # class userlogin_form(forms.Form):
 #     helper = FormHelper()

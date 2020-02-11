@@ -56,7 +56,7 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-
+# DISPLAY FUNCTIONALIITIES
 @login_required
 def display_laptops(request):
     items = laptops.objects.all()
@@ -98,6 +98,16 @@ def display_headphones(request):
 
 
 @login_required
+def display_consoles(request):
+    items = consoles.objects.all()
+    context = {
+        'items': items,
+        'header': 'consoles'
+    }
+    return render(request, 'index.html', context)
+
+# ADD FUNTIONALITIES
+@login_required
 def add_device(request, cls):
     if request.method == "POST":
         form = cls(request.POST)
@@ -129,6 +139,11 @@ def add_headphones(request):
     return add_device(request, headphones_form, )
 
 
+@login_required
+def add_consoles(request):
+    return add_device(request, consoles_form, )
+
+# EDIT FUNCTIONALITIES
 @login_required
 def edit_device(request, pk, model, cls):
     item = get_object_or_404(model, pk=pk)
@@ -164,6 +179,11 @@ def edit_headphones(request, pk):
 
 
 @login_required
+def edit_consoles(request, pk):
+    return edit_device(request, pk, consoles, consoles_form)
+
+# THE DELETE FUNCTIONALITIES
+@login_required
 def delete_laptop(request, pk):
     laptops.objects.filter(id=pk).delete()
     items = laptops.objects.all()
@@ -197,6 +217,16 @@ def delete_headphones(request, pk):
 def delete_smartphones(request, pk):
     smartphones.objects.filter(id=pk).delete()
     items = smartphones.objects.all()
+    context = {
+        'items': items
+    }
+    return render(request, 'index.html', context)
+
+
+@login_required
+def delete_consoles(request, pk):
+    consoles.objects.filter(id=pk).delete()
+    items = consoles.objects.all()
     context = {
         'items': items
     }
