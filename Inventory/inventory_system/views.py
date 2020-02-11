@@ -7,47 +7,49 @@ from django.contrib.auth import(
     login,
     logout
 )
+from django.contrib.auth.decorators import login_required
 
 
+@login_required
 def index(request):
     return render(request, 'index.html')
 
 
-def login_view(request):
-    next = request.GET.get('next')
-    form = userlogin_form(request.POST or None)
-    if form.is_valid():
-        username = form.cleaned_data.get('username')
-        password = form.cleaned_data.get('password')
-        user = authenticate(username=username, password=password)
-        login(request, user)
-        if next:
-            return redirect(next)
-        return redirect('/')
-    context = {
-        'form': form,
-    }
-    return render(request, "login.html", context)
+# def login_view(request):
+#     next = request.GET.get('next')
+#     form = userlogin_form(request.POST or None)
+#     if form.is_valid():
+#         username = form.cleaned_data.get('username')
+#         password = form.cleaned_data.get('password')
+#         user = authenticate(username=username, password=password)
+#         login(request, user)
+#         if next:
+#             return redirect(next)
+#         return redirect('/')
+#     context = {
+#         'form': form,
+#     }
+#     return render(request, "login.html", context)
 
 
-def registeration_view(request):
-    next = request.GET.get('next')
-    form = userregister_form(request.POST or None)
-    if form.is_valid():
-        user = form.save(commit=False)
-        # save the credentials from the form to the 'user' object.
-        password = form.cleaned_data.get('password')
-        user.set_password(password)
-        user.save()
-        new_user = authenticate(username=user.username, password=password)
-        login(request, new_user)
-        if next:
-            return redirect(next)
-        return redirect('/')
-    context = {
-        'form': form,
-    }
-    return render(request, "registeration.html", context)
+# def registeration_view(request):
+#     next = request.GET.get('next')
+#     form = userregister_form(request.POST or None)
+#     if form.is_valid():
+#         user = form.save(commit=False)
+#         # save the credentials from the form to the 'user' object.
+#         password = form.cleaned_data.get('password')
+#         user.set_password(password)
+#         user.save()
+#         new_user = authenticate(username=user.username, password=password)
+#         login(request, new_user)
+#         if next:
+#             return redirect(next)
+#         return redirect('/')
+#     context = {
+#         'form': form,
+#     }
+#     return render(request, "registeration.html", context)
 
 
 def logout_view(request):
@@ -55,6 +57,7 @@ def logout_view(request):
     return redirect('/')
 
 
+@login_required
 def display_laptops(request):
     items = laptops.objects.all()
     context = {
@@ -64,6 +67,7 @@ def display_laptops(request):
     return render(request, 'index.html', context)
 
 
+@login_required
 def display_desktops(request):
     items = desktops.objects.all()
     context = {
@@ -73,6 +77,7 @@ def display_desktops(request):
     return render(request, 'index.html', context)
 
 
+@login_required
 def display_smartphones(request):
     items = smartphones.objects.all()
     context = {
@@ -82,6 +87,7 @@ def display_smartphones(request):
     return render(request, 'index.html', context)
 
 
+@login_required
 def display_headphones(request):
     items = headphones.objects.all()
     context = {
@@ -91,6 +97,7 @@ def display_headphones(request):
     return render(request, 'index.html', context)
 
 
+@login_required
 def add_device(request, cls):
     if request.method == "POST":
         form = cls(request.POST)
@@ -102,22 +109,27 @@ def add_device(request, cls):
         return render(request, 'add_new.html', {'form': form})
 
 
+@login_required
 def add_laptop(request):
     return add_device(request, laptop_form, )
 
 
+@login_required
 def add_desktop(request):
     return add_device(request, desktop_form, )
 
 
+@login_required
 def add_smartphones(request):
     return add_device(request, smartphones_form, )
 
 
+@login_required
 def add_headphones(request):
     return add_device(request, headphones_form, )
 
 
+@login_required
 def edit_device(request, pk, model, cls):
     item = get_object_or_404(model, pk=pk)
     if request.method == 'POST':
@@ -131,22 +143,27 @@ def edit_device(request, pk, model, cls):
         return render(request, 'edit_item.html', {'form': form})
 
 
+@login_required
 def edit_laptop(request, pk):
     return edit_device(request, pk, laptops, laptop_form)
 
 
+@login_required
 def edit_desktop(request, pk):
     return edit_device(request, pk, desktops, desktop_form)
 
 
+@login_required
 def edit_smartphones(request, pk):
     return edit_device(request, pk, smartphones, smartphones_form)
 
 
+@login_required
 def edit_headphones(request, pk):
     return edit_device(request, pk, headphones, headphones_form)
 
 
+@login_required
 def delete_laptop(request, pk):
     laptops.objects.filter(id=pk).delete()
     items = laptops.objects.all()
@@ -156,6 +173,7 @@ def delete_laptop(request, pk):
     return render(request, 'index.html', context)
 
 
+@login_required
 def delete_desktop(request, pk):
     desktops.objects.filter(id=pk).delete()
     items = desktops.objects.all()
@@ -165,6 +183,7 @@ def delete_desktop(request, pk):
     return render(request, 'index.html', context)
 
 
+@login_required
 def delete_headphones(request, pk):
     headphones.objects.filter(id=pk).delete()
     items = headphones.objects.all()
@@ -174,6 +193,7 @@ def delete_headphones(request, pk):
     return render(request, 'index.html', context)
 
 
+@login_required
 def delete_smartphones(request, pk):
     smartphones.objects.filter(id=pk).delete()
     items = smartphones.objects.all()

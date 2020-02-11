@@ -29,8 +29,9 @@ urlpatterns = [
         delete_headphones, name='delete_headphones'),
 
     # AUTHENTICATION LINKS---->>
-    url(r'^login_view$', login_view, name='login_view'),
-    url(r'^registeration_view$', registeration_view, name='registeration_view'),
+    # The login link is going to be the main page when the app is opened.
+    # url(r'^login_view$', login_view, name='login_view'),
+    # url(r'^registeration_view$', registeration_view, name='registeration_view'),
     url(r'^logout_view$', logout_view, name='logout_view'),
 
 ]
