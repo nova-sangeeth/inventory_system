@@ -101,11 +101,23 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator",},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",},
 ]
+
+# --------------------------------------------------------------------------------
 # django allauth auth addons.
 AUTHENTICATION_BACKENDS = [
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
+ACCOUNT_EMAIL_CONFIRMATION_EXPIRE_DAY = 1
+ACCOUNT_EMAIL_REQUIRED = True
+
+ACCOUNT_EMAIL_VERIFICATION = "none"
+EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+SITE_ID = 1
+
+ACCOUNT_AUTHENTICATED_LOGIN_REDIRECTS = True
+LOGIN_REDIRECT_URL = "/"
+# --------------------------------------------------------------------------------
 
 
 # Internationalization
@@ -127,4 +139,3 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 # django_heroku.settings(locals())
-SITE_ID = 1
