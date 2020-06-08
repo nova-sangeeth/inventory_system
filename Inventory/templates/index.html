@@ -1,31 +1,37 @@
 {%extends 'base.html'%} {%block body%}
 {% if user.is_authenticated %}
 <br />
-<div class="button-group">
-  <a href="{% url 'display_laptops' %}" class="btn btn-primary btn-md" role="button">Laptops</a>
-  <a href="{% url 'add_laptop' %}" class="btn btn-success btn-md" role="button">+</a>
 
-  <a href="{% url 'display_desktops' %}" class="btn btn-primary btn-md" role="button">Desktops</a>
-  <a href="{% url 'add_desktop'%}" class="btn btn-success btn-md" role="button">+</a>
-  <a href="{% url 'display_smartphones' %}" class="btn btn-primary btn-md" role="button">Smartphones</a>
-  <a href="{% url 'add_smartphones'%}" class="btn btn-success btn-md" role="button">+</a>
-  <a href="{% url 'display_headphones' %}" class="btn btn-primary btn-md" role="button">Headphones</a>
-  <a href="{% url 'add_headphones' %}" class="btn btn-success btn-md" role="button">+</a>
-  <a href="{% url 'display_consoles' %}" class="btn btn-primary btn-md" role="button">Consoles</a>
-  <a href="{% url 'add_consoles' %}" class="btn btn-success btn-md" role="button">+</a>
-</div>
+<center>
+  <div class="button-group">
+    <a href="{% url 'display_laptops' %}" class="btn btn-primary btn-md" role="button">Laptops</a>
+    <a href="{% url 'add_laptop' %}" class="btn btn-success btn-md" role="button">+</a>
+
+    <a href="{% url 'display_desktops' %}" class="btn btn-primary btn-md" role="button">Desktops</a>
+    <a href="{% url 'add_desktop'%}" class="btn btn-success btn-md" role="button">+</a>
+    <a href="{% url 'display_smartphones' %}" class="btn btn-primary btn-md" role="button">Smartphones</a>
+    <a href="{% url 'add_smartphones'%}" class="btn btn-success btn-md" role="button">+</a>
+    <a href="{% url 'display_headphones' %}" class="btn btn-primary btn-md" role="button">Headphones</a>
+    <a href="{% url 'add_headphones' %}" class="btn btn-success btn-md" role="button">+</a>
+    <a href="{% url 'display_consoles' %}" class="btn btn-primary btn-md" role="button">Consoles</a>
+    <a href="{% url 'add_consoles' %}" class="btn btn-success btn-md" role="button">+</a>
+  </div>
+</center>
 <br />
-<h3>Currently Viewing {{header}}</h3>
+<h3 class="display-4">
+  Currently Viewing:
+  <small class="text-muted"> {{ header }} </small>
+</h3>
 <table class="table table-hover">
   <thead>
     <tr>
-      <th>Id</th>
-      <th>Model</th>
-      <th>Price</th>
-      <th>Status</th>
-      <th>Brand</th>
-      <th>Shipping</th>
-      <th>Issues</th>
+      <th class="lead">Id</th>
+      <th class="lead">Model</th>
+      <th class="lead">Price</th>
+      <th class="lead">Status</th>
+      <th class="lead">Brand</th>
+      <th class="lead">Shipping</th>
+      <th class="lead">Issues</th>
       <!-- <th>Date Launched</th> -->
     </tr>
   </thead>
@@ -76,8 +82,9 @@
 
 {% else %}
 <div class="container">
-  <p class="display-2">Please login to see the Inventory details</p>
-  <a class="btn btn-primary" href="{% url 'account_login' %}">login</a>
+  <p class="display-2">Hello There.</p>
+  <p class="lead">Plese login or Signup with your credentials to view the Inventory's Information</p>
+
 </div>
 {% endif %}
 

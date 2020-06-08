@@ -9,7 +9,6 @@ def index(request):
     return render(request, "index.html")
 
 
-
 # DISPLAY FUNCTIONALIITIES
 def display_laptops(request):
     items = laptops.objects.all()
