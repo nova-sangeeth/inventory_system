@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
 import os
+import django_heroku
+import dj_database_url
 
 # import django_heroku
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -138,4 +140,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
-# django_heroku.settings(locals())
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
+django_heroku.settings(locals())
+
+if os.getcwd() == "/app":
+    db_from_env = dj_database_url.config(con_max_age=500)
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PHOTO", "https")
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    DEBUG = True
