@@ -139,6 +139,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
+#  Heroku config ---------------------------------
 STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
 django_heroku.settings(locals())
 
@@ -147,4 +148,3 @@ if os.getcwd() == "/app:":
     SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PHOTO", "https")
     BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     DEBUG = True
-
