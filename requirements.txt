@@ -13,13 +13,17 @@ diff-match-patch==20181111
 distlib==0.3.0
 distro==1.4.0
 dj-database-url==0.5.0
+dj-static==0.0.6
 Django==3.0.7
 django-allauth==0.42.0
 django-crispy-forms==1.9.1
 django-heroku==0.3.1
 django-import-export==2.2.0
 django-on-heroku==1.0.1
+docopt==0.6.2
 et-xmlfile==1.0.1
+gitignore==0.0.8
+gunicorn==20.0.4
 html5lib==1.0.1
 idna==2.8
 ipaddr==2.2.0
