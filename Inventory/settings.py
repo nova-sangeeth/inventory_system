@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "inventory_system",
+    "profile_app",
     "import_export",
     "crispy_forms",
     # django all_auth applications.
