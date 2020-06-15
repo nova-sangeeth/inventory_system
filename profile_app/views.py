@@ -5,8 +5,17 @@ from django.contrib.auth.models import User
 
 # Create your views here.
 def profile(request):
-    return render(request, "profile.html")
+    user = user_profile.objects.filter(user=request.user)
+    return render(request, "profile.html", {"data": user})
 
 
-def profile_registration(request):
-    return render(request, "register.html")
+def register(request):
+    user = User.objects.get(username=request.user.username)
+    user_profile_id = user_profile(user=user)
+    form = profile_form(request.POST or None, instance=user_profile_id)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect("/")
+
+    return render(request, "register.html", {"form": form})
