@@ -13,4 +13,4 @@ class user_profile(models.Model):
     pincode = models.CharField(max_length=7, null=True)
 
     def __str__(self):
-        return self.user
+        return self.name
