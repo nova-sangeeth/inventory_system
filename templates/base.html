@@ -21,6 +21,7 @@
           {% if user.is_authenticated %}
           <a class="btn btn-primary" href="{% url 'account_logout' %}">Sign Out</a>
           <a class="btn btn-primary" href="{% url 'account_email' %}">Change E-mail</a>
+          <a class="btn btn-primary" href="{% url 'profile' %}">Profile</a>
           <p class="navbar-brand mb-0">Hello,{{ user.username }}</p>
           {% else %}
           <a class="btn btn-primary" href="{% url 'account_login' %}">Sign In</a>
