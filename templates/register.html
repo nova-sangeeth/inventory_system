@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% extends 'base.html' %}
+{% load crispy_forms_tags %}
 <html lang="en">
 
 <head>
@@ -11,12 +12,14 @@
 <body>
     {% block content %}
     <div class="container">
-        <form action="">
+        <form method="POST">
             {% csrf_token %}
+            {{ form | crispy }}
             <button class="btn btn-outline-success" type="submit">Submit</button>
         </form>
     </div>
     {% endblock content %}
 </body>
+
 
 </html>

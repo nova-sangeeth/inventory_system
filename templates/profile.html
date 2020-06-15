@@ -4,5 +4,16 @@
 
 <div class="container">
     <p class="lead">Profile page.</p>
+    {% for items in data %}
+    <p class="lead">Name:{{ items.name }}</p>
+    <p class="lead">Age:{{ items.age }}</p>
+    <p class="lead">Address:{{ items.address }}</p>
+    <p class="lead">Pincode:{{ items.pincode }}</p>
+    <p class="lead">Phone:{{ items.phone }}</p>
+    {% endfor %}
+    <p class="lead">Email:{{ user.email }}</p>
+    <p class="lead">Date Joined:{{ user.date_joined }}</p>
+    <p class="lead">Last Login:{{ user.last_login }}</p>
+
 </div>
 {% endblock content %}
