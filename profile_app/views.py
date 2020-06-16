@@ -19,3 +19,15 @@ def register(request):
             return redirect("/")
 
     return render(request, "register.html", {"form": form})
+
+
+def edit_profile(request):
+    user = get_object_or_404(User, username=request.user.username)
+    user_profile_id = get_object_or_404(user_profile, user=user)
+    form = profile_form(request.POST or None, instance=user_profile_id)
+    if request.method == "POST":
+        if form.is_valid():
+            form.save()
+            return redirect("profile")
+    return render(request, "edit_profile.html", {"form": form})
+
