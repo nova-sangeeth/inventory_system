@@ -1,19 +1,31 @@
 {% extends 'base.html' %}
 
 {% block content %}
+<style>
+    .special_font {
+        font-family: Arial, Helvetica, sans-serif0;
+        font-size: 20px;
+        font-weight: 400;
+    }
+</style>
 
-<div class="container">
+
+<div class="align-content-center">
     <p class="display-4">Profile page.</p>
     {% for items in data %}
-    <p class="lead">Name:{{ items.name }}</p>
-    <p class="lead">Age:{{ items.age }}</p>
-    <p class="lead">Address:{{ items.address }}</p>
-    <p class="lead">Pincode:{{ items.pincode }}</p>
-    <p class="lead">Phone:{{ items.phone }}</p>
+    <p class="special_font">Name:{{ items.name }}</p>
+    <p class="special_font">Age:{{ items.age }}</p>
+    <p class="special_font">Address:{{ items.address }}</p>
+    <p class="special_font">Pincode:{{ items.pincode }}</p>
+    <p class="special_font">Phone:{{ items.phone }}</p>
     {% endfor %}
-    <p class="lead">Email:{{ user.email }}</p>
-    <p class="lead">Date Joined:{{ user.date_joined }}</p>
-    <p class="lead">Last Login:{{ user.last_login }}</p>
-
+    <p class="special_font">Email:{{ user.email }}</p>
+    <p class="special_font">Date Joined:{{ user.date_joined }}</p>
+    <p class="special_font">Last Login:{{ user.last_login }}</p>
 </div>
+
+
+<span><a class="btn btn-outline-dark" href="{% url 'edit_profile' %}">Edit Profile</a>
+
+    <a class="btn btn-outline-primary" href="{% url 'account_email' %}">Change E-mail</a></span>
 {% endblock content %}
